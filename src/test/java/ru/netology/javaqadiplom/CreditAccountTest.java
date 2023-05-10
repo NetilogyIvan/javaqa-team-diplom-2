@@ -32,11 +32,11 @@ public class CreditAccountTest {
     }
 
 
-    @Test//По условию кредитный счет может иметь баланс вплоть до отрицательного, но до указанного кредитного лимита.
+    @Test//баг, по условию кредитный счет может иметь баланс вплоть до отрицательного, но до указанного кредитного лимита.
     //кредитный лимит 5000, операция должна завершится и ничего не поменяв на счёте
     public void testPayAboveTheLimit() {
         CreditAccount account = new CreditAccount(0, 5_000, 15);
-        account.pay(6_000);
+        account.pay (6_000);
         Assertions.assertEquals(0, account.getBalance());
 
     }
@@ -49,7 +49,7 @@ public class CreditAccountTest {
 
     }
 
-    @Test//успешно, покупка на баланс+кредитный лимит
+    @Test//баг, покупка на при 0 балансе и 0 кредитный лимит
     public void testPayForTheBalanceAndCredit() {
         CreditAccount account = new CreditAccount(0, 0, 15);
         account.pay(6_000);
@@ -85,7 +85,7 @@ public class CreditAccountTest {
 
     }
 
-    @Test// При 0 и отрицательном rate, должен возвращать IllegalArgumentException(
+    @Test//успешно, При 0 и отрицательном rate, должен возвращать IllegalArgumentException(
     // "Накопительная ставка не может быть отрицательной, а у вас: " + rate);
     public void testYearChangeRateNull() {
         CreditAccount account = new CreditAccount(200, 5_000, 0);
