@@ -17,6 +17,7 @@ public class CreditAccountTest {
         Assertions.assertEquals(4_000, account.getBalance());
     }
 
+
     @Test //пройдено
     public void testAddNullToPositiveBalance() {
         CreditAccount account = new CreditAccount(
@@ -103,6 +104,5 @@ public class CreditAccountTest {
         Assertions.assertEquals(-30, account.yearChange());
 
     }
-
 
 }
