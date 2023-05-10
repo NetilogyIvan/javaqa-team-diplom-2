@@ -74,7 +74,7 @@ public class CreditAccountTest {
     public void testYearChangePositiveBalance() {
         CreditAccount account = new CreditAccount(200, 5_000, 15);
         account.yearChange();
-        Assertions.assertEquals(200, account.yearChange());
+        Assertions.assertEquals(0, account.yearChange());
     }
 
     @Test//баг, не должен считат проценты при положительном балансе
