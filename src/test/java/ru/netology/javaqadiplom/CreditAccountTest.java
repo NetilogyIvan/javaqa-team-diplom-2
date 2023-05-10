@@ -85,13 +85,22 @@ public class CreditAccountTest {
 
     }
 
-    @Test// При 0 и отрицательном rate, должен возвращать IllegalArgumentException(
+    @Test
+    // При 0 и отрицательном rate, должен возвращать IllegalArgumentException(
     // "Накопительная ставка не может быть отрицательной, а у вас: " + rate);
     public void testYearChangeRateNull() {
-        CreditAccount account = new CreditAccount(200, 5_000, 0);
-        account.yearChange();
-        Assertions.assertEquals(200, account.yearChange());
+        try {
+            CreditAccount account = new CreditAccount(200, 5_000, 0);
+            Assertions.fail("IllegalArgumentException not thrown");
+        } catch (IllegalArgumentException expected) {
 
+        }
+    }
+    @Test // отрицательный баланс считает%
+    public void testYearChangeBalanceNegative() {
+        CreditAccount account = new CreditAccount(-200, 5_000, 15);
+        account.yearChange();
+        Assertions.assertEquals(-30, account.yearChange());
 
     }
 
