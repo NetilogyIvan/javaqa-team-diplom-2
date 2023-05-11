@@ -96,6 +96,12 @@ public class CreditAccountTest {
         account.pay(5_000);
         Assertions.assertEquals(-5_000, account.getBalance());
     }
+    @Test//++/граничные значения покупка на кредитный лимит маки балансе мак
+    public void testPayForTheBalanceMaxAndCreditLimitMax() {
+        CreditAccount account = new CreditAccount(5_000, 5_001, 22);
+        account.pay(10_001);
+        Assertions.assertEquals(- 5_001, account.getBalance());
+    }
 
     @Test// ++ считает проценты при отрицательном балансе
     public void testYearChangeNegativeBalance() {
