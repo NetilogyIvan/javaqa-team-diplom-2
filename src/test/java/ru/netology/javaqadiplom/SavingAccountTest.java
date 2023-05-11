@@ -4,9 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SavingAccountTest {
-//тесты для add (пополнения) баланса:
-    //1) add рандомное число с рандомным балансом
-    @Test //не складывает начальный баланс и сумму, которую хотим добвить/ по фиксино
+
+    @Test // ++сложение произвольного числа
     public void shouldAddLessThanMaxBalance() {
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -14,12 +13,77 @@ public class SavingAccountTest {
                 10_000,
                 5
         );
-        account.add(3_000);
+        account.add(3_999);
 
-        Assertions.assertEquals(2_000 + 3_000, account.getBalance());
+        Assertions.assertEquals(5_999, account.getBalance());
     }
-    @Test  // добавляем сумму превышающую максимальный баланс суммарно. По идее отмена операции и ожидаем 2000.
-    //2) add рандомное число с рандомным балансом, сумма выше мак баланса - должна быть отмена операции
+
+    @Test //++ граничные значение+ до максимума
+    public void shouldAddLessThanMaxBalance2() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                5
+        );
+        account.add(8_000);
+
+        Assertions.assertEquals(10_000, account.getBalance());
+    }
+
+    @Test // ++граничные значения, на 1 больше макс
+    public void shouldAddLessThanMaxBalance3() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                5
+        );
+        account.add(8_001);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test // ++граничные значения, на 1 меньше макс
+    public void shouldAddLessThanMaxBalance4() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                5
+        );
+        account.add(7_999);
+
+        Assertions.assertEquals(9_999, account.getBalance());
+    }
+
+    @Test // ++негативное тестироване на прибавление отрицательного числа
+    public void shouldAddNegativeLess() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                5
+        );
+        account.add(-1);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test // ++негативное тестироване на прибавление отрицательного числа
+    public void shouldAddNegativeLessThanMinBalance() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                5
+        );
+        account.add(-1000);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test //++ прибавляем произвольное число, которое превышает лимит
     public void shouldAddMoreThanMaxBalance() {
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -31,19 +95,8 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(2_000, account.getBalance());
     }
-    @Test  // добавляем отрицательное число./ по фиксино
-    public void shouldAddNegativeNumberThanMaxBalance() {
-        SavingAccount account = new SavingAccount(
-                2_000,
-                1_000,
-                10_000,
-                5
-        );
-        account.add(-10_000);
 
-        Assertions.assertEquals(2_000, account.getBalance());
-    }
-    @Test  // списываем отрицательное число. тест прошел
+    @Test // ++ списание произвольной отрицательной суммы
     public void shouldPayNegativeNumberThanMaxBalance() {
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -56,7 +109,8 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(2_000, account.getBalance());
     }
-    @Test  // списываем сумму меньшую, чем наш баланс. ТЕСТ ПРОШЕЛ
+
+    @Test // ++ граничные значения по списанию
     public void shouldPayLessThanInitialBalance() {
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -69,7 +123,8 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(1_000, account.getBalance());
     }
-    @Test  // списываем сумму меньшую, чем наш баланси чтобы остаток был меньше минимального./ по фиксино
+
+    @Test //++ граничные значения, на 1 меньше минимума
     public void shouldPayLessThanInitialBalanceAndLessThenMinBalance() {
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -78,11 +133,26 @@ public class SavingAccountTest {
                 5
         );
 
-        account.pay(1_500);
+        account.pay(1_001);
 
         Assertions.assertEquals(2_000, account.getBalance());
     }
-    @Test  // списываем сумму большую, чем наш баланс. Сумму вычел, актуал получился -1000 / по фиксино
+
+    @Test //++ граничные значения, на 1 больше минимума
+    public void shouldPayLessThanInitialBalance2() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                5
+        );
+
+        account.pay(999);
+
+        Assertions.assertEquals(1_001, account.getBalance());
+    }
+
+    @Test // ++ негативное тестирование. списание на сумму большую, чем начальный баланс
     public void shouldPayMoreThanInitialBalance() {
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -94,7 +164,8 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(2_000, account.getBalance());
     }
-    @Test  // списываем сумму большую, чем наш баланс. Сумму вычел, актуал получился -1000
+
+    @Test //++
     public void testYearChange() {
         SavingAccount account = new SavingAccount(
                 200,
@@ -105,5 +176,31 @@ public class SavingAccountTest {
         int yearChange = account.yearChange();
 
         Assertions.assertEquals(30, yearChange);
+    }
+
+    @Test // ++ начисление процентов при нулевом балансе
+    public void testYearChange2() {
+        SavingAccount account = new SavingAccount(
+                0,
+                0,
+                10_000,
+                15
+        );
+        int yearChange = account.yearChange();
+
+        Assertions.assertEquals(0, yearChange);
+    }
+
+    @Test // ++ начисление процентов при нулевом балансе
+    public void testYearChange3() {
+        SavingAccount account = new SavingAccount(
+                1,
+                0,
+                10_000,
+                15
+        );
+        int yearChange = account.yearChange();
+
+        Assertions.assertEquals(0, yearChange);
     }
 }
