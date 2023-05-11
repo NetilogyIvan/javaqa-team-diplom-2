@@ -18,6 +18,7 @@ public class CreditAccountTest {
     }
 
 
+
     @Test //++ граничные значения/ сложение начльного баланса + 0
     public void testAddNullToPositiveBalance() {
         CreditAccount account = new CreditAccount(
@@ -142,7 +143,9 @@ public class CreditAccountTest {
             Assertions.fail("IllegalArgumentException not thrown");
         } catch (IllegalArgumentException expected) {
 
+
         }
     }
+
 
 }
