@@ -32,11 +32,12 @@ public class CreditAccountTest {
     }
 
 
-    @Test//баг, по условию кредитный счет может иметь баланс вплоть до отрицательного, но до указанного кредитного лимита.
+    @Test
+//баг, по условию кредитный счет может иметь баланс вплоть до отрицательного, но до указанного кредитного лимита.
     //кредитный лимит 5000, операция должна завершится и ничего не поменяв на счёте
     public void testPayAboveTheLimit() {
         CreditAccount account = new CreditAccount(0, 5_000, 15);
-        account.pay (6_000);
+        account.pay(6_000);
         Assertions.assertEquals(0, account.getBalance());
 
     }
