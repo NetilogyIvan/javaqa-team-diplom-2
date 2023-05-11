@@ -8,11 +8,6 @@ package ru.netology.javaqadiplom;
  */
 public class CreditAccount extends Account {
     protected int creditLimit;
-    // @Override
-    //public int getBalance() {
-    //balance = creditLimit;
-    //return balance;
-    // }
 
     /**
      * Создаёт новый объект кредитного счёта с заданными параметрами.
