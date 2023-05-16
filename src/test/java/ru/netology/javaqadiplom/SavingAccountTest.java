@@ -270,6 +270,19 @@ public class SavingAccountTest {
         );
 
     }
+    @Test
+    public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance5() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            -1_000,
+                            -2_000,
+                            -500,
+                            15
+                    );
+                }
+        );
+
+    }
 
 
 }
