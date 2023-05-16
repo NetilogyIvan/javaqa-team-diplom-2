@@ -231,5 +231,45 @@ public class SavingAccountTest {
         );
 
     }
+    @Test
+    public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance2() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            10_000,
+                            1_000,
+                            9_000,
+                            15
+                    );
+                }
+        );
+
+    }
+    @Test
+    public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance3() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            9_001,
+                            1_000,
+                            9_000,
+                            15
+                    );
+                }
+        );
+
+    }
+    @Test
+    public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance4() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            999,
+                            1_000,
+                            9_000,
+                            15
+                    );
+                }
+        );
+
+    }
+
 
 }
