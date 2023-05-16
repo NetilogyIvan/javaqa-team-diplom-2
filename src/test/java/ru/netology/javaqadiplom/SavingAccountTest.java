@@ -168,14 +168,14 @@ public class SavingAccountTest {
     @Test //++
     public void testYearChange() {
         SavingAccount account = new SavingAccount(
-                200,
+                2_000,
                 1_000,
                 10_000,
                 15
         );
         int yearChange = account.yearChange();
 
-        Assertions.assertEquals(30, yearChange);
+        Assertions.assertEquals(300, yearChange);
     }
 
     @Test // ++ начисление процентов при нулевом балансе
@@ -219,7 +219,7 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void initialBalanceshouldBeBetweenMinBalanceAndMAxBalance() {
+    public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
                     SavingAccount account = new SavingAccount(
                             500,
