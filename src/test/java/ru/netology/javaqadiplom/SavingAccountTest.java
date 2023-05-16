@@ -231,6 +231,7 @@ public class SavingAccountTest {
         );
 
     }
+
     @Test
     public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance2() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -244,6 +245,7 @@ public class SavingAccountTest {
         );
 
     }
+
     @Test
     public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance3() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -257,6 +259,7 @@ public class SavingAccountTest {
         );
 
     }
+
     @Test
     public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance4() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -270,6 +273,7 @@ public class SavingAccountTest {
         );
 
     }
+
     @Test
     public void initialBalanceShouldNotTOBeNegative() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -283,6 +287,7 @@ public class SavingAccountTest {
         );
 
     }
+
     @Test
     public void MinBalanceShouldNotTOBeNegative() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -296,6 +301,7 @@ public class SavingAccountTest {
         );
 
     }
+
     @Test
     public void MaxBalanceShouldNotTOBeNegative() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
