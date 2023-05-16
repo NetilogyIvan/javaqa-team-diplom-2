@@ -203,6 +203,18 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(0, yearChange);
     }
+    @Test //++
+    public void testYearChange4() {
+        SavingAccount account = new SavingAccount(
+                99,
+                0,
+                10_000,
+                80
+        );
+        int yearChange = account.yearChange();
+
+        Assertions.assertEquals(79, yearChange);
+    }
 
     @Test
     public void shouldBeMinBalanceLessMAxBalance() {
