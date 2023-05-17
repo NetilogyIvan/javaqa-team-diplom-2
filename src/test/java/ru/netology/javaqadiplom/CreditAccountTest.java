@@ -18,6 +18,7 @@ public class CreditAccountTest {
     }
 
 
+
     @Test //++ граничные значения/ сложение начльного баланса + 0
     public void testAddNullToPositiveBalance() {
         CreditAccount account = new CreditAccount(
@@ -97,6 +98,14 @@ public class CreditAccountTest {
         Assertions.assertEquals(-5_000, account.getBalance());
     }
 
+    @Test//++/граничные значения покупка на кредитный лимит маки балансе мак
+    public void testPayForTheBalanceMaxAndCreditLimitMax() {
+        CreditAccount account = new CreditAccount(5_000, 5_001, 22);
+        account.pay(10_001);
+        Assertions.assertEquals(- 5_001, account.getBalance());
+    }
+
+
     @Test// ++ считает проценты при отрицательном балансе
     public void testYearChangeNegativeBalance() {
         CreditAccount account = new CreditAccount(-200, 5_000, 15);
@@ -136,7 +145,9 @@ public class CreditAccountTest {
             Assertions.fail("IllegalArgumentException not thrown");
         } catch (IllegalArgumentException expected) {
 
+
         }
     }
+
 
 }
