@@ -26,6 +26,16 @@ public class SavingAccount extends Account {
                     "Накопительная ставка не может быть отрицательной, а у вас: " + rate
             );
         }
+        if (minBalance > maxBalance) {
+            throw new IllegalArgumentException("Минимальный баланс не может быть больше максимального");
+        }
+        if (initialBalance < minBalance || initialBalance > maxBalance) {
+            throw new IllegalArgumentException("Начальный баланс должен быть в диапазоне от minBalance  до  maxBalance");
+        }
+        if (minBalance < 0) {
+            throw new IllegalArgumentException("Баланс не может быть отрицательным");
+        }
+
         this.balance = initialBalance;
         this.minBalance = minBalance;
         this.maxBalance = maxBalance;
@@ -90,7 +100,7 @@ public class SavingAccount extends Account {
      */
     @Override
     public int yearChange() {
-        return balance / 100 * rate;
+        return balance * rate / 100;
     }
 
     public int getMinBalance() {

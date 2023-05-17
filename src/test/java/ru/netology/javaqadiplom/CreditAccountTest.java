@@ -18,7 +18,6 @@ public class CreditAccountTest {
     }
 
 
-
     @Test //++ граничные значения/ сложение начльного баланса + 0
     public void testAddNullToPositiveBalance() {
         CreditAccount account = new CreditAccount(
@@ -102,7 +101,7 @@ public class CreditAccountTest {
     public void testPayForTheBalanceMaxAndCreditLimitMax() {
         CreditAccount account = new CreditAccount(5_000, 5_001, 22);
         account.pay(10_001);
-        Assertions.assertEquals(- 5_001, account.getBalance());
+        Assertions.assertEquals(-5_001, account.getBalance());
     }
 
 

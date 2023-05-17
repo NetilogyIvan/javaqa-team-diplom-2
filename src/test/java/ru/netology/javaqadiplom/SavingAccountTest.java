@@ -168,14 +168,14 @@ public class SavingAccountTest {
     @Test //++
     public void testYearChange() {
         SavingAccount account = new SavingAccount(
-                200,
+                2_000,
                 1_000,
                 10_000,
                 15
         );
         int yearChange = account.yearChange();
 
-        Assertions.assertEquals(30, yearChange);
+        Assertions.assertEquals(300, yearChange);
     }
 
     @Test // ++ начисление процентов при нулевом балансе
@@ -203,4 +203,131 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(0, yearChange);
     }
+
+    @Test //++
+    public void testYearChange4() {
+        SavingAccount account = new SavingAccount(
+                99,
+                0,
+                10_000,
+                80
+        );
+        int yearChange = account.yearChange();
+
+        Assertions.assertEquals(79, yearChange);
+    }
+
+    @Test
+    public void shouldBeMinBalanceLessMAxBalance() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            2_000,
+                            10_000,
+                            9_000,
+                            15
+                    );
+                }
+        );
+
+    }
+
+    @Test
+    public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            500,
+                            1_000,
+                            9_000,
+                            15
+                    );
+                }
+        );
+
+    }
+
+    @Test
+    public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance2() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            10_000,
+                            1_000,
+                            9_000,
+                            15
+                    );
+                }
+        );
+
+    }
+
+    @Test
+    public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance3() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            9_001,
+                            1_000,
+                            9_000,
+                            15
+                    );
+                }
+        );
+
+    }
+
+    @Test
+    public void initialBalanceShouldBeBetweenMinBalanceAndMAxBalance4() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            999,
+                            1_000,
+                            9_000,
+                            15
+                    );
+                }
+        );
+
+    }
+
+    @Test
+    public void initialBalanceShouldNotTOBeNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            -1_000,
+                            2_000,
+                            10_000,
+                            15
+                    );
+                }
+        );
+
+    }
+
+    @Test
+    public void MinBalanceShouldNotTOBeNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            1_000,
+                            -2_000,
+                            10_000,
+                            15
+                    );
+                }
+        );
+
+    }
+
+    @Test
+    public void MaxBalanceShouldNotTOBeNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                    SavingAccount account = new SavingAccount(
+                            1_000,
+                            1_000,
+                            -10_000,
+                            15
+                    );
+                }
+        );
+
+    }
+
+
 }
