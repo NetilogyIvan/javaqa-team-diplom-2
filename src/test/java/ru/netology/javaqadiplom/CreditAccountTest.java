@@ -147,6 +147,12 @@ public class CreditAccountTest {
 
         }
     }
+    @Test//проверка на неотрицательность баланса
+    public void testLimitMax() {
+        CreditAccount account = new CreditAccount(- 5_000, - 5_001, 22);
+        account.pay(10_001);
+        Assertions.assertEquals(-5_001, account.getBalance());
+    }
 
 
 }
