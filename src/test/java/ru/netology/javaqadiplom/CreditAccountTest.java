@@ -146,6 +146,7 @@ public class CreditAccountTest {
 
         }
     }
+
     @Test ////++Проверка IllegalArgumentException
     public void testYearChangeInitialBalanceNegative() {
         try {
@@ -156,6 +157,7 @@ public class CreditAccountTest {
 
         }
     }
+
     @Test ////++Проверка IllegalArgumentException
     public void testYearChangeCreditLimitNegative() {
         try {
