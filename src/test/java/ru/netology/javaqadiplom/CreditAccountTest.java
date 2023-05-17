@@ -154,5 +154,27 @@ public class CreditAccountTest {
         Assertions.assertEquals(-5_001, account.getBalance());
     }
 
+    @Test ////++Проверка IllegalArgumentException
+    public void testYearChangeInitialBalanceNegative() {
+        try {
+            CreditAccount account = new CreditAccount(-200, 0, 15);
+            Assertions.fail("IllegalArgumentException not thrown");
+        } catch (IllegalArgumentException expected) {
+
+
+        }
+    }
+
+    @Test ////++Проверка IllegalArgumentException
+    public void testYearChangeCreditLimitNegative() {
+        try {
+            CreditAccount account = new CreditAccount(200, -5000, 15);
+            Assertions.fail("IllegalArgumentException not thrown");
+        } catch (IllegalArgumentException expected) {
+
+
+        }
+    }
+
 
 }
