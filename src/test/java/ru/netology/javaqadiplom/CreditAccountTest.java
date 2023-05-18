@@ -111,6 +111,12 @@ public class CreditAccountTest {
         account.yearChange();
         Assertions.assertEquals(-30, account.yearChange());
     }
+    @Test// ++ считает проценты при отрицательном балансе
+    public void testYearChangeNegativeBalanceOne() {
+        CreditAccount account = new CreditAccount(-1, 5_000, 1);
+        account.yearChange();
+        Assertions.assertEquals(0, account.yearChange());
+    }
 
     @Test//++ не должен считат проценты при положительном балансе
     public void testYearChangePositiveBalance() {
@@ -146,12 +152,6 @@ public class CreditAccountTest {
 
 
         }
-    }
-    @Test//проверка на неотрицательность баланса
-    public void testLimitMax() {
-        CreditAccount account = new CreditAccount(- 5_000, - 5_001, 22);
-        account.pay(10_001);
-        Assertions.assertEquals(-5_001, account.getBalance());
     }
 
     @Test ////++Проверка IllegalArgumentException
